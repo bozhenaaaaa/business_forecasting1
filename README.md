@@ -65,8 +65,24 @@ Data Scientist / Аналітик даних (Шимко).
 [[Посилання на презентацію в Canva](https://www.canva.com/design/DAHEB915vRo/xAJ55x5HPlqLB1RPfYJc5Q/edit?utm_content=DAHEB915vRo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)] «Презентація готується до фінального захисту проєкту (кінець семестру).»
 
 ### 16. Детальний опис проєкту
-* **Функціональні вимоги:** Система має автоматично завантажувати продажі за останні 2 роки та видавати прогноз на 30 днів.
-* **Flow роботи:** SQL Extract -> Data Cleaning -> Model Inference -> Validation -> S3 Upload.
+* **Функціональні вимоги:** Система повинна автоматично вивантажувати історичні дані про продажі, проводити їх очищення, враховувати календар маркетингових активностей (Prime Day, Black Friday) та генерувати прогноз попиту на наступні 30 днів з розбивкою по категоріях.
+* **Flow роботи (алгоритм):**
+    1.  **Ingestion:** Отримання сирих даних з AWS Redshift.
+    2.  **Validation:** Перевірка цілісності даних.
+    3.  **Processing:** Видалення аномальних сплесків (повернень) та заповнення пропусків.
+    4.  **Modeling:** Запуск ансамблевої моделі для розрахунку прогнозних значень.
+    5.  **Export:** Передача результатів у Tableau для візуалізації.
+
+* **Блок-схема процесу:**
+
+```mermaid
+graph TD
+    A[SQL Database: Amazon Redshift] --> B[Data Preprocessing & Cleaning]
+    B --> C[Feature Engineering: Seasonality & Holidays]
+    C --> D{ML Model: XGBoost/Prophet}
+    D --> E[Model Evaluation: RMSE/MAPE]
+    E --> F[Output: AWS S3 / Parquet]
+    F --> G[Visualization: Tableau Dashboard]
 
 ### 17. Вимоги до даних
 * `product_id` (int), `date` (date), `sales_volume` (int), `price` (float).
