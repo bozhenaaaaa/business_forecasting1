@@ -77,12 +77,13 @@ Data Scientist / Аналітик даних (Шимко).
 
 ```mermaid
 graph TD
-    A[SQL Database: Amazon Redshift] --> B[Data Preprocessing & Cleaning]
-    B --> C[Feature Engineering: Seasonality & Holidays]
-    C --> D{ML Model: XGBoost/Prophet}
-    D --> E[Model Evaluation: RMSE/MAPE]
-    E --> F[Output: AWS S3 / Parquet]
-    F --> G[Visualization: Tableau Dashboard]
+    A[База даних SQL: Amazon Redshift] --> B[Попередня обробка та очищення даних]
+    B --> C[Формування ознак: Сезонність та Свята]
+    C --> D{ML Модель: XGBoost/Prophet}
+    D --> E[Оцінка точності: RMSE/MAPE]
+    E --> F[Результат: AWS S3 / Parquet]
+    F --> G[Візуалізація: Tableau Dashboard]
+```
 
 ### 17. Вимоги до даних
 * `product_id` (int), `date` (date), `sales_volume` (int), `price` (float).
@@ -95,4 +96,4 @@ graph TD
 Зміна алгоритмів ранжування товарів на Amazon, що може різко змінити попит; затримки в оновленні бази даних.
 
 ### 20. Примітки
-Для навчання моделі використовувати дані за 2024-2025 роки.
+"Проєкт знаходиться в стадії активної розробки. Поточні статуси завдань оновлюються на Kanban-дошці."
